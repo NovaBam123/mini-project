@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Cropper.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.2/cropper.min.js"></script>
+    <link rel="stylesheet" href="74-cropper.css">
+
+    <title>Cropper js</title>
+</head>
+<body>
+    <div class="header">  
+        <div class="title">Image Editor</div>  
+        <div class="options">  
+          <input type="file" hidden>  
+          <button class="inBtn openNewFile" title="Open Image File"><i class="fa-solid fa-file-image"></i></button>  
+          <a href="https://github.com/InCoderWeb" target="_blank" title="Github Profile"><button class="inBtn"><i class="fa-brands fa-github"></i></button></a>  
+          <button class="inBtn outputDownloadBtn hide"><i class="fa-solid fa-download"></i></button>  
+        </div>  
+      </div>  
+      <div class="mainContainer">  
+        <div class="dragOrDropContainer">  
+          <div class="icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>  
+          <div class="text">Drag & Drop to Upload File</div>  
+        </div>  
+        <div class="editorOptions">  
+          <div class="sideBar active">  
+            <button class="sidebarToggleBtn"><i class="fa-solid fa-chevron-left"></i></button>  
+            <div class="preview">  
+              <p>Preview</p>  
+              <div class="previewImage"></div>  
+            </div>  
+            <div class="options">  
+              <div class="zoom">  
+                <p>Zoom In / Zoom Out</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtn zoomIn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>  
+                  <button class="optionBtn zoomOut"><i class="fa-solid fa-magnifying-glass-minus"></i></button>  
+                </div>  
+              </div>  
+              <div class="rotate">  
+                <p>Rotate Image</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtn rotateLeft"><i class="fa-solid fa-rotate-left"></i></button>  
+                  <button class="optionBtn rotateRight"><i class="fa-solid fa-rotate-right"></i></button>  
+                </div>  
+              </div>  
+              <div class="flip">  
+                <p>Flip Image</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtn flipLeftRight"><i class="fa-solid fa-arrows-left-right"></i></button>  
+                  <button class="optionBtn flipUpDown"><i class="fa-solid fa-arrows-up-down"></i></button>  
+                </div>  
+              </div>  
+              <div class="aspectRatio">  
+                <p>Aspect Ratio</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtnSqr">16:9</button>  
+                  <button class="optionBtnSqr">4:5</button>  
+                  <button class="optionBtnSqr">1:1</button>  
+                  <button class="optionBtnSqr">2:3</button>  
+                  <button class="optionBtnSqr">Free</button>  
+                </div>  
+              </div>  
+              <div class="dragMode">  
+                <p>Drag Mode</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtn dragModeBtn"><i class="fa-solid fa-crop-simple"></i></button>  
+                  <button class="optionBtn dragModeBtn"><i class="fa-solid fa-arrows-up-down-left-right"></i></button>  
+                </div>  
+              </div>  
+              <div class="controlCropper">  
+                <p>Control Cropper</p>  
+                <div class="btnWrapper">  
+                  <button class="optionBtn cropperClear"><i class="fa-solid fa-bars-staggered"></i></button>  
+                  <button class="optionBtn cropperCrop"><i class="fa-solid fa-crop-simple"></i></button>  
+                </div>  
+              </div>  
+            </div>  
+          </div>  
+        </div>  
+      </div>  
+      <script src="74-cropper.js"></script>
+</body>
+</html>

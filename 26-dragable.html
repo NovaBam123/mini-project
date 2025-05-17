@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DRAG | DROP | SORTABLE</title>
+    <link rel="stylesheet" href="26-dragable.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+    <ul class="sortable-list">
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp1.jpg">
+                <span>Dragon Ball</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp2.jpg">
+                <span>Dragon Ball II</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp3.jpg">
+                <span>Baldy</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp4.jpg">
+                <span>Executive</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp5.jpg">
+                <span>Japan Eye</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+        <li class="item">
+            <div class="details">
+                <img src="/dragable/dp6.jpg">
+                <span>Half-life</span>
+            </div>
+            <i class="fa-solid fa-grip-vertical"></i>
+        </li>
+    </ul>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script>
+        // const sortableListEl= document.querySelector(".sortable-list"),
+        // itemsEl= document.querySelectorAll(".item");
+
+        // itemsEl.forEach(item=> {
+        //     item.addEventListener("dragstart", e=> {
+        //         item.classList.add("dragging"); 
+        //     })
+        //     item.addEventListener("dragend", e=>item.classList.remove("dragging"));
+        // })
+        
+        // function initSortableList(e){
+        //     e.preventDefault();
+        //     const draggingItem= sortableListEl.querySelector(".dragging");
+        //     const siblings= [...sortableListEl.querySelectorAll(".item:not(.dragging")];
+        //     let nextSibling= siblings.find(el=> {
+        //         return e.clientX <= el.offsetLeft+ el.offsetWidth / 2;
+        //     })
+        //     sortableListEl.insertBefore(draggingItem, nextSibling);
+        // }
+        // function initSortableList(e) {
+        //     e.preventDefault();
+        //     const draggingItem = sortableListEl.querySelector(".dragging");
+        //     const siblings = [...sortableListEl.querySelectorAll(".item:not(.dragging)")];
+            
+        //     let nextSibling = siblings.find(el => {
+        //         // Menggunakan baik posisi horizontal dan vertikal untuk menemukan item berikutnya
+        //         const rect = el.getBoundingClientRect();
+        //         const isInVerticalRange = e.clientY >= rect.top && e.clientY <= rect.bottom;
+        //         const isBeforeElement = e.clientX < rect.left + rect.width / 2;
+
+        //         return isInVerticalRange && isBeforeElement;
+        //     });
+
+        //     sortableListEl.insertBefore(draggingItem, nextSibling);
+        // }
+
+        // sortableListEl.addEventListener("dragover", initSortableList);
+        // sortableListEl.addEventListener("dragenter", e=>e.preventDefault());
+    
+        
+        const sortableListEl= document.querySelector(".sortable-list");
+        new Sortable(sortableListEl, {
+            animation: 150,
+            ghostClass: "ghost"
+        })
+
+    </script>
+</body>
+</html>

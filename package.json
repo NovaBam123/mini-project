@@ -1,0 +1,14 @@
+{
+  "name": "06-miniproject-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "16-TypingApp.js",
+  "main2": "17-TypingTest.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

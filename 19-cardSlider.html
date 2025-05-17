@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Card Slider</title>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> 
+    <link rel="stylesheet" href="/19-cardSlider.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+</head>
+<body>
+    <div class="containerswiper">
+        <div class="slider-wrapper">
+            <div class="card-list swiper-wrapper">
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-1.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">James Wilson</h2> 
+                    <p class="user-profession">Software Developer</p>
+                    <button class="message-button">Message</button>
+                </div>
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-2.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">Sarah Johnson</h2> 
+                    <p class="user-profession">Graphic Designer</p>
+                    <button class="message-button">Message</button>
+                </div>
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-3.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">Michael Brown</h2> 
+                    <p class="user-profession">Project Manager</p>
+                    <button class="message-button">Message</button>
+                </div>
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-4.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">Emily Davis</h2> 
+                    <p class="user-profession">Marketing Specialist</p>
+                    <button class="message-button">Message</button>
+                </div>
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-5.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">Christopher Garcia</h2> 
+                    <p class="user-profession">Data Scientiest</p>
+                    <button class="message-button">Message</button>
+                </div>
+               <div class="card-item swiper-slide">
+                    <img src="/cardSlider/img-6.jpg" alt="img1" class="user-image">
+                    <h2 class="user-name">Richard Wilson</h2> 
+                    <p class="user-profession">Product Designer</p>
+                    <button class="message-button">Message</button>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-slide-button swiper-button-prev"></div>
+            <div class="swiper-slide-button swiper-button-next"></div>
+        </div>
+    </div>  
+    <script>
+      const swiper = new Swiper(".slider-wrapper", {
+            loop: true,
+            grabCursor: true,
+            spaceBetween: 20,
+
+            // If we need pagination
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+                dynamicBullets: true,
+            },
+
+            // Navigation arrows
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                768: {
+                    slidesPerView: 2
+                },
+                1024: {
+                    slidesPerView: 3
+                },
+            }
+        });
+    </script>
+</body>
+</html>

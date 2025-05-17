@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Radio</title>
+    <link rel="stylesheet" href="/radio stream/">
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background: linear-gradient(90deg, black, white, black);
+}
+.wrap-img{
+    border:1px solid lime;
+    height: 100px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background-image: url("/radioStream/giphy.webp");
+    background-size: cover;
+    background-position: center 50%
+}
+.shadow{
+    border-radius: 15px;
+    box-shadow: 4px 4px 10px rgba(56, 55, 55, 0.7);
+}
+
+.radio-app {
+    text-align: center;
+    border: 2px solid black;
+    background-color: black;
+    box-shadow: inset 4px 4px 10px white;
+    padding: 20px;
+    border-radius: 15px;
+}
+.stations button {
+    margin: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: 0.5px double gray;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: black;
+    color: lime;
+    box-shadow: inset 2px 2px 6px white; 
+    transition: all 0.5s ease-in-out;
+    &:hover{
+        transform: scale(1.1);
+    }   
+}
+audio {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+}
+</style>
+<body>
+    <div class="shadow">
+        <div class="radio-app">
+            <div class="wrap-img"></div>
+                <div class="stations">
+                    <button id="station1">Hard Rock Fm</button>
+                    <button id="station2">Singapura?</button>
+                    <button id="station3">Oz Radio</button>
+                </div>
+                
+                <audio id="audio" controls></audio>
+        </div>
+    </div> 
+</body>
+<Script>
+   document.addEventListener('DOMContentLoaded', () => {
+    const audioPlayer = document.getElementById('audio');
+    const station1 = document.getElementById('station1');
+    const station2 = document.getElementById('station2');
+    const station3 = document.getElementById('station3');
+
+    station1.addEventListener('click', async () => {
+        const url = await getStreamUrl('https://beta4.hardrockfm.com/streaming-bdg/');
+        if (url) {
+            playStation(url);
+        } else {
+            console.error('Failed to load the stream URL.');
+        }
+    });
+
+    station2.addEventListener('click', () => {
+        playStation(' https://listen.flyfm.audio/');
+    });
+
+    station3.addEventListener('click', () => {
+        playStation('http://1031ozradio.com:8000/stream');
+    });
+
+    function playStation(url) {
+        audioPlayer.pause();
+        audioPlayer.src = url;
+        audioPlayer.load(); // Load the new URL
+        audioPlayer.play().catch(error => {
+            console.error('Error playing the audio:', error);
+        });
+    }
+
+    async function getStreamUrl(pageUrl) {
+        try {
+            const response = await fetch(pageUrl);
+            const text = await response.text();
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(text, 'text/html');
+            const streamUrl = doc.querySelector('audio').getAttribute('src');
+            return streamUrl;
+        } catch (error) {
+            console.error('Error fetching stream URL:', error);
+            return null;
+        }
+    }
+});
+
+
+</Script>
+</html>

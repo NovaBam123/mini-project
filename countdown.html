@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+</head>
+    <style>
+         html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+
+        div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        p {
+            font-size: 70px;
+            font-weight: 600;
+            transition: all 0.5 ease;
+        }
+
+        .bigger1 {
+            font-size: 150px;
+        }
+    </style>
+<body>
+    <div>
+        <p id="countdown">3</p>
+    </div>
+
+
+</body>
+    <script>
+        let numberEl = document.getElementById("countdown");
+        let count = 3; // Mulai dari angka 3
+
+        function countDown() {
+            numberEl.textContent = count;
+            let interval = setInterval(() => {
+            count--;
+            numberEl.classList.add("bigger1"); // Efek animasi
+
+                if (count <= 1) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        numberEl.textContent = "1";
+                        numberEl.classList.remove("bigger1");
+                        numberEl.style.fontSize = "70px"; // Ukuran akhir
+                    }, 500);
+                } else {
+                    setTimeout(() => {
+                        numberEl.classList.remove("bigger1");
+                    }, 1000); // Hapus efek animasi setelah setengah detik
+                }
+            }, 1000); // Perbarui setiap detik
+        }
+
+        countDown();
+
+
+    </script>
+</html>

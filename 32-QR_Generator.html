@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE QR_CODE || QR CODE GENERATOR</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+    <style>
+        *{margin: 0; padding: 0; box-sizing: border-box;}
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: url(/cardSlider/bg8.jpg) no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 360px;
+            margin-top: 50px;
+            padding: 10px;
+            border-radius:5px; 
+            border: 1px solid lime;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.4);
+            box-shadow: 0px 4px 8px rgba(0,0,0, 0.5);
+            h2{
+                text-align: center;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                font-size: 1.8rem;
+            }
+            .box-code{
+                display: flex;
+                padding: 20px;
+                align-content: center;
+                justify-content: center;
+                margin-top: 20px;
+                width: 100%; height: 300px;
+                border: 1px solid #ccc;
+            }
+        }
+        .btn{
+            position: relative;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            input{
+                width: 95%;
+                height: 30px;
+                padding: 0 10px;
+                border: none;
+                border-radius: 30px;
+                &:focus{
+                    outline: lime;
+                    box-shadow: inset 2px 2px 4px black;
+                    &::placeholder{
+                        opacity: 0;
+                    }
+                }
+            }
+            button{
+                position: absolute;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                top: 4%; right: 10px;
+                width: 28px; height: 28px;
+                border: none;
+                font-size: 18px;
+                border-radius: 50%;
+                background: rgba(0,0,0, 0.1);
+                color: black;
+            }
+        }
+    </style>
+<body>
+    <div class="container">
+        <h2>QR_Code Generator</h2>
+        <div class="btn">
+            <input type="text" id="urlInput" placeholder="Enter your URL here">
+            <button id="createCode" title="generate code">
+                <i class="fa-solid fa-power-off"></i>
+            </button>
+        </div>
+        <div class="box-code">
+            <div id="qrCode">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        const createBtnEl= document.getElementById("createCode"),
+        urlEl= document.getElementById("urlInput"), 
+        qrCodeEl= document.getElementById("qrCode");
+
+        createBtnEl.addEventListener("click", e=> {
+            const url= urlEl.value;
+            if(!urlEl) {
+                alert("Please enter a URL!");
+            }else{
+                qrCodeEl.innerHTML= "";
+                new QRCode(qrCodeEl, url);
+            }
+        })
+
+    </script>
+</body>
+</html>

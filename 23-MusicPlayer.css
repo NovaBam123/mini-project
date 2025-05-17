@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{ margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif;}
+
+*::before, *::after{
+    padding: 0; margin: 0; box-sizing: border-box;
+}
+
+:root{
+    --pink: #ff74a4;
+    --violet: #9f6ea3;
+    --lightblack: #515c6f;
+    --white: #ffffff;
+    --darkwhite: #cecaca;
+    --pinkshadow: #ffcbdd;
+    --lightshadow: rgba(0,0,0,0.15);
+}
+body{
+    display:flex;
+    flex-direction: column;
+    /* justify-content: center;  */
+    align-items: center;
+    min-height: 100vh;
+    background: url(songImg/bg.jpg) no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+}
+.wrapper{
+    position: relative;
+    border: 1px solid #fff;
+    width: 410px;
+    overflow: hidden;
+    border-radius: 15px;
+    padding: 25px 30px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 6px 15px rgba(0,0,0,0.4);
+    i{
+        cursor:pointer;
+    }
+}
+.top-bar{
+    display: flex;
+    align-items: center; justify-content: space-between;
+    i{
+        font-size: 30px;
+        color: var(--lightblack);
+    }
+    span{
+        font-size: 18px;
+        color: var(--lightblack);
+    }
+}
+.img-area{
+    height: 256px;
+    width: 100%;
+    margin-top: 25px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0px 6px 12px var(--lightshadow);
+    img{
+        height: 100%; width: 100%;
+        object-fit: cover;
+    }
+}
+.song-details{
+    color: var(--lightblack);
+    text-align: center;
+    margin: 30px 0;
+    .name{
+        font-size: 20px;
+    }
+    .artist{
+        font-size: 16px;
+        opacity: 0.7;
+    }
+}
+.progress-area{
+    height: 6px; width: 100%;
+    background: #f0f0f0;
+    border-radius: 50px;
+    cursor: pointer;
+    &:hover .progress-bar::before{
+        opacity: 1;
+    }
+    .progress-bar{
+        position: relative;
+        height: inherit;
+        width: 0;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--pink) 0%, var(--violet) 100%);
+    }
+    .timer{
+        display: flex;
+        align-items: center; justify-content: space-between;
+        margin-top: 2px;
+        span{
+            font-size: 13px;
+            color: var(--lightblack);
+            opacity: 0.7;
+        }
+    }
+}
+.progress-bar::before{
+    content: "";
+    position: absolute;
+    width: 12px; height: 12px;
+    background: inherit;
+    border-radius: inherit;
+    top: 50%;
+    right: -5px;
+    transform: translateY(-50%);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+.controls{
+    display: flex;
+    align-items: center; justify-content: space-between;
+    margin: 40px 0 5px 0;
+    i{
+        font-size: 28px;
+        user-select: none;
+        background:linear-gradient(90deg, var(--pink) 0%, var(--violet) 100%); 
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent; 
+        &:nth-child(2), &:nth-child(4){
+            font-size: 43px;
+        }   
+    }
+    .play-pause{
+        height: 54px; width: 54px;
+        background: linear-gradient(var(--white) 0%, var(--darkwhite) 100%);
+        box-shadow: 0px 0px 5px var(--pink);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center; align-items: center;
+        i{
+            position: relative;
+            height: 43px; width: 43px;
+            line-height: 43px;
+            text-align: center;
+            border-radius: inherit;
+            background: inherit;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+        }
+    }
+    #prev{
+        margin-right: -13px;
+    }
+    #next{
+        margin-left: -13px;
+    }
+}
+.play-pause::before{
+    content: "";
+    height: 43px; width: 43px;
+    background:linear-gradient(var(--pink) 0%, var(--violet) 100%);
+    position: absolute;
+    border-radius: inherit;
+}
+
+.music-list{
+    position: absolute;
+    left: 0; bottom: -60%;
+    pointer-events: none;
+    width: 100%;
+    padding: 15px 30px;
+    border-radius:15px;
+    background: var(--white);
+    box-shadow: 0px -5px 10px rgba(0,0,0,0.1);
+    transition: all 0.14 ease-out;
+    &.music-list.show{
+        bottom: 0;
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .header{
+        display: flex;
+        align-items: center; justify-content: space-between;
+        .row{
+            display: flex;
+            align-items: center;
+            font-size: 19px;
+            color: var(--lightblack);
+            i{  
+                cursor: default;
+            }
+            span{
+                margin-left: 5px;
+            }
+        }
+        #close{
+            font-size: 22px;
+            color: var(--lightblack);
+            &:hover{
+                background: red;
+                border-radius: 5px;
+            }
+        }
+    }
+    ul{
+        margin: 10px 0;
+        max-height: 260px;
+        overflow-y: auto;
+        &::-webkit-scrollbar{
+            width: 0px;
+        }
+        li{
+            display: flex;
+            align-items: center; justify-content: space-between;
+            cursor: pointer;
+            color: var(--lightblack);
+            list-style: none;
+            padding-bottom: 10px;
+            margin-bottom: 5px;
+            border-bottom: 1px solid #e5e5e5;
+            &.playing{
+                color: var(--pink);
+                pointer-events: none;
+            }
+            .row{
+                p{
+                    opacity: 0.8;
+                }
+                span{
+                    font-size: 17px;
+                }
+            }
+            .audio-duration{
+                font-size: 16px;
+            }
+            &:last-child{
+                border-bottom: 0px;
+            }
+        }
+    }
+}
+.circle1, .circle2, .circle3, .circle4, .circle5{
+    z-index: -1;
+    /* background: linear-gradient(140deg, transparent, rgb(72, 187, 196)); */
+    background: linear-gradient(140deg, black, transparent, black);
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    opacity: 0.6;
+}
+.circle1{
+    width: 125px; height: 125px;
+    top: 100px; left: 50%;
+    transform: translateX(-210%);
+}
+.circle2{
+    width: 90px; height: 90px;
+    background: linear-gradient(140deg, black, gold, black);
+    top: 160px; left: 50%;
+    transform: translateX(110%);
+}
+.circle3{
+    width: 170px; height: 170px;
+    background: linear-gradient(140deg, black, silver, black);
+    top: 630px; left: 50%;
+    transform: translateX(105%);
+}
+.circle4{
+    width: 130px; height: 130px;
+    background: linear-gradient(140deg, black, hotpink, black);
+    top: 690px; left: 50%;
+    transform: translateX(-210%);
+}
+.circle5{
+    width: 130px; height: 130px;
+    background: linear-gradient(140deg, black, skyblue, black);
+    top: 550px; left: 50%;
+    transform: translateX(-50%);
+}
+
+header{
+    width: 500px;
+    /* background: black; */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; align-items: center;
+    margin-top: 125px;
+    margin-bottom: 20px;
+    .title-app{
+        display: flex;
+        gap: 20px;
+        h1 {
+            cursor: default;
+            position: absolute;
+            top: -100px;
+            left: 60px;
+            margin: auto;
+            display: flex;
+            text-align: center;
+            color: lime;
+            span {
+              position: relative;
+              top: 20px;
+              display: inline-block;
+              font-size: 50px;
+              color: #fff;
+              text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+                0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,
+                0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4);
+                &:nth-of-type(6){
+                    margin-left: 25px;
+                }
+            }
+        }
+    }
+    p{
+        position: relative;
+        width: 100%;
+        top: -5px;
+        text-align: center;
+        /* left: -80px; */
+        font-family: Arial, Helvetica, sans-serif;
+        text-transform: uppercase;
+        font-size: 1.5rem;
+        overflow: hidden;
+        background: linear-gradient(90deg, black, hotpink, black);
+        background-repeat: no-repeat;
+        background-size: 80%;
+        animation: animate 10s linear infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0);
+    }  
+}
+
+@keyframes animate {
+    0% {
+      background-position: -500%;
+    }
+    100% {
+      background-position: 500%;
+    }
+}
+
+@media (min-width: 300px) and (max-width: 768px){
+    body{
+        min-height: 130vh;
+        width: 450px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .wrapper{
+        width: 325px;
+        padding: 20px 20px;
+        backdrop-filter: blur(3px);
+    }
+    .song-details{
+        margin: 20px 0;
+        .name{
+            font-size: 1.2rem;
+        }
+        .artist{
+            font-size: 1rem;
+            opacity: 0.7;
+        }
+    }
+    .music-list{
+        position: absolute;
+        left: 0; bottom: -80%;
+        pointer-events: none;
+    }
+    header{
+        margin: 20px 10px;
+        .title-app{
+            display: flex;
+            gap: 20px;
+            h1 {
+                cursor: default;
+                position: absolute;
+                top: -90px;
+                span {
+                    top: 10px;
+                  display: inline-block;
+                  font-size: 1.6em;
+                }
+            }
+        }
+        p{
+            position: relative;
+            width: 100%;
+            top: -5px;
+            left: 15px;
+            font-size: 1.2rem;
+        }  
+    }
+    .circle1{
+        top: 180px; left: 50%;
+        transform: translateX(-110%);
+    }
+    .circle2{
+        top: 170px; left: 50%;
+        transform: translateX(60%);
+    }
+    .circle3{
+        top: 630px; left: 50%;
+        transform: translateX(55%);
+    }
+    .circle4{
+        top: 690px; left: 50%;
+        transform: translateX(-110%);
+    }
+    .circle5{
+        max-width: 30px; max-height: 30px;
+    }
+    
+}

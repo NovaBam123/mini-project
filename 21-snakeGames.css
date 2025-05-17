@@ -1,0 +1,159 @@
+*{margin: 0; padding: 0; box-sizing: border-box;}
+:root{
+    --font-size: 10px;
+    --bg1: #293447; 
+}
+
+body{
+    max-height: 100vh;
+    background: #E3F2FD;
+    display: flex;
+    align-items: center; justify-content: center;
+}   
+
+.wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    width: 70vmin;
+    height: 75vmin;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #293447;
+    .game-details{
+        color: #B8C6DC;
+        font-size: 1.2rem;
+        font-weight: 600;
+        padding: 20px 27px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .play-board{
+        width: 100%; height: 100%;
+        display: grid;
+        grid-template: repeat(30, 1fr)/ repeat(30, 1fr);
+        background: #212837;
+        .food{
+            background: hotpink;  
+        }
+        .head{
+            background: cornflowerblue;
+        }
+    }
+}
+.popup{
+    position: fixed;
+    top: 15px;
+    .confirm{
+        position: relative;
+        overflow: hidden;
+        width: 450px;
+        padding: 13px 17px;
+        background: linear-gradient(120deg, black, cornflowerblue, black);
+        color: white;
+        border-radius: 5px;
+        animation: show_confirm 0.3s ease forwards;
+        &.confirm.hide{
+            animation: hide_confirm 0.3s ease forwards;
+        }
+        .column{
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            .developer{
+                display: flex;
+                align-items:center; 
+                gap: 5px;
+                i, p{
+                    font-size: 1.2rem;
+                }
+                i{
+                    color: greenyellow;
+                }
+            }
+           span{ 
+                margin-top: 7px;
+                color: #dcdcdc ;
+            }
+            .btnWrapper{
+                align-self: flex-end;
+                display: flex;
+                justify-content: center; align-items: center;
+                button{
+                    border: none;
+                    width: 3.5rem; height: 1.8rem;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    background: cornflowerblue;
+                    color: white;
+                }
+            } 
+        }
+    }
+}
+.confirm::before{
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: 100%;
+    bottom: 0; left: 0;
+    background: hotpink;
+    animation: progress 15s linear forwards;
+}
+
+@keyframes show_confirm{
+    0%{
+        transform: translateY(100%);
+    }
+    40%{
+        transform: translateY(-5%);
+    }
+    80%{
+        transform: translateY(0%);
+    }
+    100%{
+        transform: translateY(-10px);
+    }
+}
+@keyframes hide_confirm{
+    0%{
+        transform: translateY(-10%);
+    }
+    40%{
+        transform: translateY(0%);
+    }
+    80%{
+        transform: translateY(-5%);
+    }
+    100%{
+        transform: translateY(calc(-100% - 15px));
+    }
+}
+@keyframes progress{
+    100%{
+        width: 0%;
+    }
+}
+
+@media (min-width: 300px)and (max-width: 768px){
+    html, body{
+        touch-action: none;
+    }
+
+    body{
+        max-height: 400px;
+        /* overflow: hidden; */
+    }
+    .wrapper{
+        margin-top: 300px;
+        width: 95vmin;
+        height: 105vmin;
+    }
+    .popup{
+        .confirm{
+            width: 370px;
+        }
+    }
+}

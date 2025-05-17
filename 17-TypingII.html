@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Typing Test II</title>
+    <link rel="stylesheet" href="/17-TypingII.css">
+    <link rel="stylesheet" href="/17b-TypingII.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header>
+        <h1>Typing Speed Test</h1>
+    </header>
+    <main>
+        <input type="text" class="input-field" id="inputField">
+        <div id='color-select' class="color-select">
+            <div class='color-box' style="background-color: #778899 ;"></div>
+            <div class='color-box' style="background-color: #536878;"></div>
+            <div class='color-box' style="background-color: #fa8072;"></div>
+            <div class='color-box' style="background-color: #ca1f7b;"></div>
+            <div class='color-box' style="background-color: #8e3a59;"></div>
+            <div class='color-box' style="background-color: #228b22;"></div>
+            <div class='color-box' style="background-color: #4682b4;"></div>
+            <div class='color-box' style="background-color: #195905;"></div>
+            <div class='color-box' style="background-color: #4b0082;"></div>
+            <div class='color-box' style="background-color: #000080;"></div>
+            <div class='color-box' style="background-color: #191970;"></div>
+            <div class='color-box' style="background-color: #3d0c02 ;"></div>
+            <div class='color-box' style="background-color: #264348 ;"></div>
+            <div class='color-box' style="background-color: #2f4f4f;"></div>
+            <div class='color-box' style="background-color: #100c08;"></div>
+            <label for="language">Language</label>
+            <select class="drop-down language" id="languageOption">
+                <option value="english450k">English 450k</option>
+                <option value="english">English</option>
+                <option value="indonesia10k">Indonesia 10k</option>
+                <option value="indonesia">Indonesia</option>
+            </select>
+            <label for="fonts">FontStyle</label>
+            <select class="drop-down font" id="fontOption">
+                <option value="Noto Serif">Noto Serif</option>
+                <option value="Poppins">Poppins</option>
+                <option value="Open Sans">Open Sans</option>
+                <option value="Monserrat">Montserrat</option>
+                <option value="Roboto Mono">Roboto Mono</option>
+                <option value="Roboto Condensed">Roboto Condensed</option>
+            </select>
+        </div>
+        <p></p>
+    </main>
+    <footer class="stats">
+        <ul class="stats-details">
+            <li class="time">
+                <p>Time:</p>
+                <div>
+                    <span id="minutes">00:</span>
+                    <span id="seconds">00</span>
+                </div>
+            </li>
+            <li class="wpm">
+                <p>WPM:</p>
+                <span>0</span>
+            </li>
+            <li class="mistake">
+                <p>Mistakes:</p>
+                <span>0</span>
+            </li>
+            <li class="accuracy">
+                <p>Accuracy:</p>
+                <span>0%</span>
+            </li>
+            <div class="btn-wrapper">
+                <button id="chart" title="Statistic Test">
+                    <i class="bi bi-bar-chart-line"></i>
+                </button>
+                <button class="btnStart" id="btnStart" title="Start Test">
+                    <i class="bi bi-keyboard-fill"></i>
+                </button>
+            </div>
+        </ul>
+        <div class="date">
+            <p id="dDay">July 25, 1999 9:11AM</p>
+        </div>
+    </footer>
+
+    <div class="popup" id="popup">
+        <div class="result" id="result">
+            <i class="bi bi-x-lg" id="close"></i>
+            <h1>Test Result</h1>
+            <div class="result-details">
+                <div class="end time">
+                    <p>Time:</p>
+                    <div>
+                        <span id="min">00:</span>
+                        <span id="sec">00</span>
+                    </div>
+                </div>
+                <div class="end wpm">
+                    <p>WPM:</p>
+                    <span>0</span>
+                </div>
+                <div class="end mistakes">
+                    <p>Mistakes:</p>
+                    <span>0</span>
+                </div>
+                <div class="end accuracy">
+                    <p>Accuracy:</p>
+                    <span>0%</span>
+                </div>
+                <div class="end cpm">
+                    <p>CPM:</p>
+                    <span>0</span>
+                </div>
+                <div class="end consistency">
+                    <p>Consistency</p>
+                    <span>0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-container" id="tableContainer">
+        <button class="close-wrapper">
+             <i class="bi bi-x-lg" id="tableClose"></i>
+        </button>
+        <table>
+            <thead>
+                <tr colspan="9">
+                </tr>
+                <tr class="label">
+                    <th>Date</th>
+                    <th>Typing Time</th>
+                    <th>Wpm</th>
+                    <th>Cpm</th>
+                    <th>Mistakes</th>
+                    <th>Acurracy</th>
+                    <th>Consistency</th>
+                    <th>TotChar</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody> </tbody>
+            <tfoot>
+                <td>Total and Avg Data:</td>
+                <td id="totalTime">01.20.05</td>
+                <td id="avgWpm">58.5</td>
+                <td id="avgCpm">230.4</td>
+                <td id="totMistakes">40</td>
+                <td id="avgAccuracy">98.5</td>
+                <td id="avgConsistency">68.3</td>
+                <td id="totalChar">1500</td>
+                <td id="resetData"> 
+                    <button id="reset" title="Reset all Data">
+                        <i class="bi bi-arrow-clockwise"></i> 
+                    </button>
+                </td>
+            </tfoot>
+        </table>
+
+        <div class="scrolling">
+            <button class="toBottom">
+                <i class="fa-solid fa-angles-down"></i>
+            </button>
+            <button class="toTop">
+                <i class="fa-solid fa-angles-up"></i>
+            </button>
+        </div>
+    </div>
+
+    <script type="module" src="/17-Paragraph.js"></script>    
+    <script type="module" src="/17-TypingTest.js"></script>    
+</body>
+</html>
+

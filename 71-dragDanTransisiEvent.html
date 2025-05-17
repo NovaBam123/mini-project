@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Drag and Drop Sederhana</title>
+  <style>
+    .draggable {
+      width: 100px;
+      height: 100px;
+      background-color: coral;
+      position: absolute;
+      cursor: grab;
+    }
+
+    .todo {
+      width: 200px;
+      height: 50px;
+      background-color: skyblue;
+      margin: 10px 10px;
+      transition: all 0.3s ease;
+    }
+    .todo.fade-out {
+      transform: translateY(8rem) rotateZ(20deg);  
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="draggable" id="draggableBox"></div>
+  <div class="todo" id="todo1">Todo Item 1</div>
+  <button id="removeButton">Remove Todo</button> 
+
+
+<script>
+   document.addEventListener('DOMContentLoaded', () => {
+  const draggableBox = document.getElementById('draggableBox');
+
+  let isDragging = false;
+  let lastOffsetX = 0;
+  let lastOffsetY = 0;
+
+  draggableBox.addEventListener('mousedown', e => {
+    isDragging = true;
+    lastOffsetX = e.offsetX;
+    lastOffsetY = e.offsetY;
+  });
+
+  window.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    draggableBox.style.left = e.clientX - lastOffsetX + 'px';
+    draggableBox.style.top = e.clientY - lastOffsetY + 'px';
+  });
+
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+  });
+}); 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const todo = document.getElementById('todo1');
+  const removeButton = document.getElementById('removeButton');
+
+  removeButton.addEventListener('click', () => {
+    // Menambahkan kelas 'fade-out' untuk memulai transisi
+    todo.classList.add('fade-out');
+  });
+
+  todo.addEventListener('transitionend', () => {
+    // Menghapus elemen 'todo' setelah transisi selesai
+    todo.remove();
+  });
+});
+</script>  
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export Data From LocalStorage To HD</title>
+</head>
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        height: 15vh;
+        justify-content: space-between;
+        align-items: flex-start;
+        input{
+            padding-left: 5px;
+            cursor: pointer;
+        }
+    }
+    button{
+        margin: 0 5px;
+        background-color: black;
+        color: lime;
+        text-transform:uppercase;
+        font-weight: 700;
+        border: 2px double gray;
+        padding: 10px 10px;
+        border-radius: 4px;
+        box-shadow: inset -2px -2px 4px white;
+        cursor: pointer;
+        transition: all 0.3s ease-in;
+        &:hover{
+          transform: scale(1.1)
+        }
+    }
+</style>
+<body>
+    <h2>Export-Import Data From LocalStorage to HD</h2>
+    <div class="container">
+        <button id="exportBtn">Export Data</button>
+        <input type="file" id="fileInput">
+        <button id="importBtn">Import Data</button>
+    </div>
+<script>
+    // EXPORT DATA FROM LOCAL STORAGE
+    document.getElementById("exportBtn").addEventListener("click", function(){
+        const keys= ["Archive01", "Bookmark01", "Bookmark02","Bookmark03", "Notes02", "Typing_Stats", "SortableOrder", "MyOrder"];
+        const data= {}
+
+        keys.forEach(key=> {
+            const value= localStorage.getItem(key);
+            if(value){
+                data[key]= value;
+            }
+        })
+        
+        const blob= new Blob([JSON.stringify(data, null, 2)], { type: "application/json"});
+        const link = document.createElement("a");
+        link.href= URL.createObjectURL(blob);
+        link.download= "localStorageData.json";
+        link.addEventListener("click", function(){
+            setTimeout(()=> {
+                alert("Transfer Berhasil");
+            }, 100);
+        });
+        document.body.appendChild(link);
+        link.click()
+        document.body.removeChild(link);
+    });
+
+    //IMPORT DATA FROM HD
+    document.getElementById("importBtn").addEventListener("click", function(){
+        const fileInput= document.getElementById("fileInput");
+        if(fileInput.files.length === 0){
+            alert("Silahkan pilih file!");
+            return;
+        }
+        const file= fileInput.files[0];
+        const reader= new FileReader();
+        reader.onload = function(event){
+            try{
+                const data=  JSON.parse(event.target.result);
+                Object.keys(data).forEach(key=>{
+                    // console.log(data[key])
+                    localStorage.setItem(key, data[key])
+                });
+                alert("Import Berhasil..!")
+            } catch(err){
+                alert("Gagal import " + err.message);
+            }
+        };
+        reader.readAsText(file);
+    });
+</script>    
+</body>
+</html>

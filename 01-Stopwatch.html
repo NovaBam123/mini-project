@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="/01. Stopwatch.css"/> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+    :root{
+    --warna-utama: white;
+    --text: coral;
+}
+body{
+    background-color: var(--text);
+    font-family: "Roboto", sans-serif;
+    /* height: 100% */
+}
+h1{ 
+    background-color: orange;
+    color: var(--warna-utama);
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 55px;
+}
+.wrapper{
+    align-items: center; 
+    width: 800px;
+    margin: 30px auto;
+    text-align: center;
+}
+p{
+    font-size: 60px;
+    color: var(--warna-utama);
+}
+button{
+    transition: all 0.5s ease-in-out;
+    background-color: var(--text);
+    border-radius: 5px;
+    border: solid 1px white;
+    padding: 20px 40px;
+    margin: auto 20px;
+    font-size: 20px;
+    color: var(--warna-utama);
+    cursor: pointer;
+    &:hover {
+        background-color: white;
+        border: solid 1px lightgray;
+        color: var(--text)
+    }
+}
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>Stopwatch</h1>
+        <p> 
+            <span id="minute">00</span>
+            <span>:</span>
+            <span id="second">00</span>
+            <span>:</span>
+            <span id="count">00</span>
+        </p>
+        <button id="btnStart">Start</button>
+        <button id="btnStop">Stop</button>
+        <button id="btnReset">Reset</button>
+    </div>
+
+<script>
+    let counterID;
+    let count = 0;
+    let seconds= 0;
+    let minutes= 0;
+    const startButton=document.getElementById("btnStart");
+    const stopButton=document.getElementById("btnStop");
+    const resetButton=document.getElementById("btnReset");
+    
+    startButton.addEventListener("click", ()=>{
+        clearInterval(counterID);
+        counterID= setInterval(startTimer, 1000)
+    });
+    
+    stopButton.addEventListener("click", ()=>{
+        clearInterval(counterID);
+    })
+
+    resetButton.addEventListener("click", ()=>{
+        clearInterval(counterID);
+        count= 0;
+        seconds= 0;
+        minutes= 0;
+        document.getElementById("count").textContent= "00";
+        document.getElementById("second").textContent= "00";
+    })
+
+    function startTimer(){
+        count++
+        if(count === 60){
+            count= 0
+            seconds++
+        }
+        if(seconds == 60){
+            seconds= 0
+            minutes++
+        }
+        let countString= count<10 ? "0"+ count: count;
+        let secString = seconds<10? "0"+ seconds: seconds;
+        document.getElementById("count").textContent= countString;
+        document.getElementById("second").textContent= secString;
+        }
+</script>    
+</body>
+</html>

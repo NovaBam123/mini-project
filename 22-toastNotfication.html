@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOAST NOTIFICATION</title>
+    <link rel="stylesheet" href="/22-toastNotfication.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+    <ul class="notifications">
+      
+    </ul>
+    <div class="buttons">
+        <button class="btn" id="success">Success</button>
+        <button class="btn" id="error">Error</button>
+        <button class="btn" id="warning">Warning</button>
+        <button class="btn" id="info">Info</button>
+    </div>
+
+    <script>
+        const buttons= document.querySelectorAll(".btn"),
+        notifications= document.querySelector(".notifications"),
+
+        toastDetails= {
+            timer: 5000,
+            success: {
+                icon: "fa-circle-check",
+                text: "Success: This is a success toast."
+            },
+            error: {
+                icon: "fa-circle-xmark",
+                text: "Errors: This is a errors toast."
+            },
+            warning: {
+                icon: "fa-triangle-exclamation",
+                text: "Warning: This is a warning toast."
+            },
+            info: {
+                icon: "fa-circle-info",
+                text: "Info: This is a information toast."
+            },
+        }
+        
+        function removeToast(toast){
+            toast.classList.add("hide");
+            if(toast.timeoutId) clearTimeout(toast.timeoutId);
+            setTimeout(()=> toast.remove(), 500);
+        }
+
+        function createToast(id){
+          const toast= document.createElement("li");
+          const{ icon, text }= toastDetails[id];
+          toast.className= `toast ${id}`;
+          toast.innerHTML= `
+                <div class="column">
+                    <i class="fa-solid ${icon}"></i>
+                    <span>${text}</span>
+                </div>
+                <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`
+           notifications.appendChild(toast);
+           toast.timeoutId= setTimeout(()=> removeToast(toast), toastDetails.timer);
+        }
+
+        buttons.forEach(el=> {
+            el.addEventListener("click", ()=> createToast(el.id));
+        })        
+    </script>    
+</body>
+</html>

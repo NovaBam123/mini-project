@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+*{margin: 0; padding: 0; box-sizing: border-box; 
+font-family: "Poppins", sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; justify-content: center;
+    background: url("./cardSlider/bg9.jpg") no-repeat;
+    background-size: 400px 600px;
+    background-position: center;    
+    background-size: cover;
+    backdrop-filter: blur(3px);
+}
+select{
+    align-self: flex-start;
+    margin: 5px 15px;
+    border: none;
+    height: 30px;
+    width: 50%;
+    padding: 3px;
+    background: #7549da;
+    border-radius: 5px;
+    outline: none;
+    box-shadow: inset 2px 2px 4px black;
+    color: white;
+    &:active{
+        outline: none;
+        box-shadow: inset 2px 2px 4px black;
+    }
+}
+
+.container{
+    position: relative;
+    max-width: 390px;
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(15px);
+    padding: 20px 10px;
+    box-shadow: 0 5px 10px darkgray;
+    header{
+        color: white;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        text-align: center;
+        text-shadow: 0 1px 0 #ccc, 0 2px 0 #ccc, 0 3px 0 #ccc, 0 4px 0 #ccc,
+        0 5px 0 #ccc, 0 6px 0 transparent, 0 7px 0 transparent, 0 8px 0 transparent,0 9px 0 transparent, 0 10px 10px rgba(0, 0, 0, 0.4)
+        
+    }
+    textarea{
+        width: 100%;
+        min-height: 180px;
+        border-radius: 10px;
+        padding: 10px 15px;
+        margin: 20px 0;
+        font-size: 0.9rem;
+        &:focus{
+            outline: none;
+            box-shadow: inset 3px 3px 5px rgba(0,0,0,0.8);
+            &::placeholder{
+                opacity: 0;
+            }
+        }
+    }
+    button{
+        width: 100%;
+        padding: 14px 0;
+        border-radius: 8px;
+        border: none;
+        background: #7549da;
+        color: white;
+        font-size: 1rem;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover{
+            transform: scale(0.97);
+        }
+        &:active{
+            box-shadow: inset 3px 3px 5px black;
+        }
+   }
+}
+

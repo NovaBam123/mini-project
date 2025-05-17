@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale: 1.0, user-scalable= no">
+    <title>Memory Game I</title>
+    <link rel="stylesheet" href="/06-Memory-Games.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+   <div class="game">
+        <header>
+            <h1>Memory Game I</h1>
+        </header>
+        <div class="nav-select">
+            <div class="category-wrapper">
+                <label for="">Category</label>
+                <select class="dropDown" id="choosePic">
+                    <option value="cars">Cars</option>
+                    <option value="fruits">Fruits</option>
+                    <option value="bikes">Motocycles</option>
+                </select>
+            </div>
+            <div id='color-select' class="color-select">
+                <div class='color-box' style="background-color: #fff"></div>
+                <div class='color-box' style="background-color: #ffffe0;"></div>
+                <div class='color-box' style="background-color: #dcdcdc;"></div>
+                <div class='color-box' style="background-color: #ffff00;"></div>
+                <div class='color-box' style="background-color: #00ff00;"></div>
+                <div class='color-box' style="background-color: #79FDFE;"></div>
+                <div class='color-box' style="background-color: #7AD6FD;"></div>
+                <div class='color-box' style="background-color: #ffb6c1;"></div>
+                <div class='color-box' style="background-color: #FF89FD;"></div>
+                <div class='color-box' style="background-color: #ba55d3;"></div>
+                <div class='color-box' style="background-color: #fa8072;"></div>
+                <div class='color-box' style="background-color: #ff4500;"></div>
+                <div class='color-box' style="background-color: #ff0000;"></div>
+                <div class='color-box' style="background-color: #ae0c00;"></div>
+                <div class='color-box' style="background-color: #8bbe1b;"></div>
+                <div class='color-box' style="background-color: #228b22;"></div>
+                <div class='color-box' style="background-color: #4682b4;"></div>
+                <div class='color-box' style="background-color: #9400d3;"></div>
+                <div class='color-box' style="background-color: #800080;"></div>
+                <div class='color-box' style="background-color: #000080;"></div>
+            </div>
+        </div>
+        <div class="wrapper-board" id="wrapperBoard">
+            <div class="board" id="board">
+                
+            </div>
+            <div class="win-container" id="winContainer">
+                <div class="wrapper-win">
+                    <i class="bi bi-x-lg" id="close"></i>
+                    <h1>Congratulation...</h1>
+                    <span>You Won..!!</span>
+                    <span>With:</span>
+                    <span id="wonMoves">With: 10 moves</span>
+                    <span id="winTimes">
+                        <p>Times:</p>
+                        <span id="wonMinutes"></span>
+                        <span >:</span>
+                        <span id="wonSeconds"></span>
+                    </span>
+                </div>
+            </div>   
+        </div>
+        <div class="footer">
+            <div class="stats">
+                <p id="moves">Moves: 00</p>
+                <p id="times">Times: 
+                    <span id="minutes">00</span> 
+                    <span id="seconds">00</span>
+                </p>
+            </div>
+            <div>
+                <button id="btnRestart">
+                    <i class="bi bi-arrow-clockwise"></i> 
+                </button>
+            </div>
+        </div>
+   </div>
+    
+<script src="/06-Memory-Games.js"></script>    
+</body>
+</html>

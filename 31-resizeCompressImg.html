@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESIZE AND COMPRESS IMAGE</title>
+    <link rel="stylesheet" href="31-resizeCompressImg.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="upload-box">
+            <input type="file" accept="image/" hidden>
+            <img src="#" class="file-img">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <p>Browse File To Upload</p>
+        </div>
+        <div class="content">
+            <div class="row sizes">
+                <div class="column width">
+                    <label>Width</label>
+                    <input type="number">
+                </div>
+                <div class="addBtn">
+                    <button>ADD</button>
+                </div>
+                <div class="column height">
+                    <label>Height</label>
+                    <input type="number">
+                </div>
+            </div>
+            <div class="row checkboxes">
+                <div class="column ratio">
+                    <input type="checkbox" id="ratio" checked>
+                    <label for="ratio">Lock aspect ratio</label>
+                </div>
+                <div class="column quality">
+                    <input type="checkbox" id="quality">
+                    <label for="quality">Reduce quality</label>
+                </div>
+            </div>
+            <div class="btn-container">
+                <button class="download-btn">
+                    Download Image
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="container-edited"></div>
+
+    <script>
+        let uploadBoxEl= document.querySelector(".upload-box"),
+        previewImgEl= uploadBoxEl.querySelector(".file-img"),
+        fileInputEl= uploadBoxEl.querySelector("input"),
+        widthInputEl= document.querySelector(".width input"),
+        heightInputEl= document.querySelector(".height input"),
+        ratioInputEl= document.querySelector(".ratio input"),
+        downloadBtnEl= document.querySelector(".download-btn"),
+        qualityInputEl= document.querySelector(".quality input"),
+        addBtnEl= document.querySelector(".addBtn button");
+
+        let imageRatio;
+        
+        function loadFile(e){
+            const file= e.target.files[0];
+            if(!file) return;
+            previewImgEl.classList.add("show");
+            previewImgEl.src= URL.createObjectURL(file);
+            
+            previewImgEl.addEventListener("load", e=> {
+                widthInputEl.value= previewImgEl.naturalWidth;
+                heightInputEl.value= previewImgEl.naturalHeight;
+                imageRatio= previewImgEl.naturalWidth/ previewImgEl.naturalHeight
+            })
+        }
+
+        widthInputEl.addEventListener("keyup", e=> {
+            let height= ratioInputEl.checked?  widthInputEl.value/ imageRatio: heightInputEl.value;
+            heightInputEl.value= Math.floor(height);
+        })
+        heightInputEl.addEventListener("keyup", e=> {
+            let width= ratioInputEl.checked?  heightInputEl.value/ imageRatio: widthInputEl.value;
+            widthInputEl.value= Math.floor(width);
+        })
+       
+        addBtnEl.addEventListener("click", e=>{
+            if(previewImgEl.src=== "" || !previewImgEl.src.startsWith("blob:")){
+                alert("Tambahkan dulu gambar..!")
+            } else {
+                const containerEdited= document.querySelector(".container-edited"),
+                canvas= document.createElement("canvas"),
+                aTag= document.createElement("a"),
+                imgQuality= qualityInputEl.checked? 0.7: 1.0;
+                
+                const ctx= canvas.getContext("2d");
+                canvas.width= widthInputEl.value;
+                canvas.height= heightInputEl.value;
+                
+                ctx.drawImage(previewImgEl, 0, 0, canvas.width, canvas.height);
+                containerEdited.appendChild(canvas);
+                previewImgEl.classList.remove("show");
+                previewImgEl.src= "";
+            }
+        })
+
+        downloadBtnEl.addEventListener("click", e=> {
+            const canvas= document.createElement("canvas"),
+            aTag= document.createElement("a"),
+            imgQuality= qualityInputEl.checked? 0.7: 1.0;
+            
+            const ctx= canvas.getContext("2d");
+            canvas.width= widthInputEl.value;
+            canvas.height= heightInputEl.value;
+            
+            ctx.drawImage(previewImgEl, 0, 0, canvas.width, canvas.height);
+
+            aTag.href= canvas.toDataURL("image/png", imgQuality);
+            aTag.download= new Date().getTime();
+            aTag.click();
+            previewImgEl.classList.remove("show");
+            previewImgEl.src= "";
+        })
+        
+        fileInputEl.addEventListener("change", loadFile);
+        uploadBoxEl.addEventListener("click", ()=> fileInputEl.click());
+    </script>
+</body>
+</html>

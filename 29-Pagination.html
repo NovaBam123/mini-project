@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAGINATION</title>
+    <link rel="stylesheet" href="29-Pagination.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- <div class="color-container">
+        <div class="box-color">
+            <input type="color" id="colorPicker" value="#0C81C0">
+            <button class="copyColor">Copy</button>
+        </div>
+     <button class="apply">Apply to body</button>   
+    </div> -->
+
+    <div class="container">
+        <button class="btn"  id="startBtn" disabled> <i class="fa-solid fa-angles-left"></i></button>
+        <button class="btn prevNext" id="prev" disabled> <i class="fa-solid fa-angle-left"></i></button>
+        <div class="links">
+            <a href="#" class="link active">1</a>
+            <a href="#" class="link">2</a>
+            <a href="#" class="link">3</a>
+            <a href="#" class="link">4</a>
+            <a href="#" class="link">5</a>
+        </div>
+
+        <button class="btn prevNext" id="next" > <i class="fa-solid fa-angle-right"></i></button>
+        <button class="btn" id="endBtn"> <i class="fa-solid fa-angles-right"></i></button>
+    </div>
+
+    <!-- <div class="popup">
+        <div class="popup-msg">
+            <p>developer says:</p>
+            <div class="second-div">
+                <i class="fa solid fa-triangle-exclamation"></i>
+                <span>Color Copied</span>
+            </div>
+            <button class="accept-btn">OK</button>
+            <div class="progress-bar"></div>
+        </div>
+    </div> -->
+
+    <script>
+        const colorPickerEl= document.getElementById("colorPicker"),
+        // copyButton= document.querySelector(".copyColor"),
+        // applyBtnEl= document.querySelector(".apply"),
+        // bodyEl= document.querySelector("body"), 
+        startBtnEl= document.querySelector("#startBtn"), 
+        endBtnEl= document.querySelector("#endBtn"), 
+        numbersEl= document.querySelectorAll(".link"), 
+        prevNextEl= document.querySelectorAll(".prevNext"); 
+        
+        let currentStep= 0;
+        numbersEl.forEach((num, numIdx)=> {
+            num.addEventListener("click", e=> {
+                e.preventDefault();
+                currentStep= numIdx;
+                document.querySelector(".active").classList.remove("active");
+                num.classList.add("active");
+                updateBtn();
+            })
+        })
+
+        prevNextEl.forEach(button=> {
+            button.addEventListener("click", e=> {
+                currentStep += e.target.id === "next" ? 1: -1;
+                numbersEl.forEach((number, numIdx)=> {
+                    number.classList.toggle("active", numIdx=== currentStep);
+                    updateBtn();
+                });
+            })
+        })
+        
+        const updateBtn= ()=> {
+            if(currentStep ===4){
+                endBtnEl.disabled= true;
+                prevNextEl[1].disabled= true;
+            } else if(currentStep=== 0){
+                startBtnEl.disabled= true;
+                prevNextEl[0].disabled= true;
+            }else {
+                endBtnEl.disabled= false;
+                prevNextEl[1].disabled= false;
+                startBtnEl.disabled= false;
+                prevNextEl[0].disabled= false;
+            }
+        }
+        startBtnEl.addEventListener("click", e=> {
+            document.querySelector(".active").classList.remove("active");
+            numbersEl[0].classList.add("active");
+            currentStep = 0;
+            updateBtn();
+            endBtnEl.disabled= false;
+            prevNextEl[1].disabled= false;
+        })
+        endBtnEl.addEventListener("click", e=> {
+            document.querySelector(".active").classList.remove("active");
+            numbersEl[4].classList.add("active");
+            currentStep= 4;
+            updateBtn();
+            startBtnEl.disabled= false;
+            prevNextEl[0].disabled= false;
+        })
+
+        //coloring
+        copyButton.addEventListener('click', () => {
+            const selectedColor = colorPickerEl.value;
+            
+            navigator.clipboard.writeText(selectedColor) 
+                .then(() => {
+                    showMsg(selectedColor)
+                    applyBtnEl.dataset.color= selectedColor;
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        });
+       
+      //  function showMsg(color, onConfirm){
+      //       let selectedColor = color,
+      //       popupEl= document.querySelector(".popup"),
+      //       textEl= popupEl.querySelector("span"),
+      //       progressEl= popupEl.querySelector(".progress-bar"),
+      //       okEl= popupEl.querySelector(".accept-btn");
+            
+      //       popupEl.classList.add("show");
+      //       progressEl.classList.add("display");
+      //       textEl.textContent= `Color Copied: ${selectedColor}`;
+      //       popupEl.style.background= `linear-gradient(90deg, black, ${selectedColor}, black)`;
+      //       okEl.style.backgroundColor= `${selectedColor}`;
+            
+      //       let counter= 100;
+      //       let progressId = setInterval(()=> {
+      //           if(counter == 0){
+      //               clearInterval;
+      //           }
+      //           else {
+      //               counter-= 1
+      //               progressEl.style.width= `${counter}%`;
+      //           }
+      //       }, 40)
+
+      //       let msgId= setTimeout(()=> popupEl.classList.remove("show"), 5000);
+      //       okEl.onclick=()=>{
+      //           clearTimeout(msgId);
+      //           clearInterval(progressId);
+      //           popupEl.classList.remove("show");
+      //       }
+      //   }
+
+      //   applyBtnEl.addEventListener("click", ()=>{
+      //       let selectedColor= applyBtnEl.dataset.color;
+      //       bodyEl.style.backgroundColor= selectedColor;
+      //   })
+    </script>
+</body>
+</html>

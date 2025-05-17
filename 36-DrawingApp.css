@@ -1,0 +1,146 @@
+*{ box-sizing: border-box; margin: 0; padding: 0;}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100vw;
+    min-height: 100vh;
+    background: #000;
+}
+
+.container{
+    width: 100%;
+    h1{
+        text-align: center;
+        color: white;
+        margin-bottom: 20px;
+        background: #7F7FD5;
+        background: -webkit-linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+        background: linear-gradient(to right, #91EAE4, #86A8E7, #7F7FD5);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent
+    }
+    .drawing-area{
+        width: 100%; height: 800px;
+        color: white;
+        border: 1px solid #dcc1c1;
+        position: relative;
+        #drawingBoard{
+            width: 100%; height: 800px;
+            background: white;
+        }
+        
+        .side-bar{
+            border-bottom: 5px solid rgba(255,255,255,0.4);
+            z-index: 10;
+            position: fixed;
+            position: absolute;
+            max-width: 120px;
+            background: #000;
+            top: -2px;
+            left: -2px;
+            font-size: 16px;
+            transition: all 0.5s cubic-bezier(0, 0.81, 0, 0.95);
+            &.side-bar.active{
+                left: -125px;
+            }
+            .sidebarBtn{
+                width: 40px; height: 40px;
+                position: absolute;
+                top: 0px;
+                right: -35px;
+                background: #000;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                border: none;
+                margin-left: -5px;
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+            }
+            .color, .pencil, .zoom, .rotate{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items:end;
+                height: 145px;
+                width: 100%;
+                gap: 5px;
+                padding: 10px 10px;
+                border-bottom: 1px solid rgba(255,255,255,0.4);
+            }
+            label{
+                margin-bottom: 10px;
+            }
+            .color{
+                    margin-bottom: 5px;
+                    display: flex;
+                    flex-direction: column;
+                    input{
+                        width: 55px; height: 55px;
+                        cursor: pointer;
+                    }
+            }
+            .pencil{
+                input{
+                    width: 80%; height: 30px;
+                    font-size: 18px;
+                    padding-left: 5px;
+                    border-radius: 5px;
+                }
+            }
+            .zoom, .rotate{
+                .btnWrap{
+                    width: 100%;
+                    display: flex;
+                    justify-content: flex-end;
+                    gap: 20px;
+                    button{
+                        color: white;
+                        font-size: 18px;
+                        width: 30px; height: 30px;
+                        display: flex;
+                        justify-content: center; align-items: center;
+                        border-radius: 5px;
+                        cursor: pointer;
+                        background: #413a33;
+                    }
+                }
+            }
+            .btnReset{
+                padding: 10px;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-end;
+                border-bottom: 1px solid rgba(255,255,255,0.4);
+                button{
+                    width: 30px; height: 30px;
+                    margin-top: 10px;
+                    font-size: 18px;
+                    color: white;
+                    background: #413a33;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 950px){
+    body{
+        .container{
+            .drawing-area{
+                position: relative;
+                width: 100%;
+                border: 1px solid #dcc1c1;
+                .container-toolbars{
+                    min-height: 65%;
+                }
+            }
+        }
+    }    
+}

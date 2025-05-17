@@ -1,0 +1,308 @@
+:root {
+    --Light-Salmon: #ffa07a;
+    --Tomato:#ff6347;
+    --Shocking-Pink: #fc0fc0;
+    --Barbie-pink: #e0218a;
+    --Dark-lemon: #8bbe1b;
+    --Bitter-lime: #648c11;
+}
+body{
+    font-family: "Tektur", sans-serif;
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    height: 200vh;
+    background: #dcdcdc;
+}
+
+header{
+    height: 150px;
+    border: 1px solid red;
+    background: linear-gradient(90deg, var(--Light-Salmon), var(--Tomato));
+    h1{
+        font-size: 60px;
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+.subHeader{
+    display: flex; 
+    margin-top: -50px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    p, i{
+        display: inline-block;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+.container{
+    margin-top: -35px;
+    .bookmark-inputs{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+}
+.bookmark-inputs{
+    padding-top: 10px;
+    .row1{
+        width: 90%;
+        padding: 2px;
+        margin: 10px auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .row1 input{
+        height: 35px;
+        width: 40%;
+        border: 2px solid rgb(174, 12, 0);
+        padding-left: 10px;
+        font-family: sans-serif;
+        font-size: 16px;
+    }
+    .row1 input:nth-of-type(1){
+        margin-right: 70px;
+    }
+    i{ 
+        background-color:rgb(174, 12, 0) ;
+        font-size: 32px;
+        padding: 0 5px;
+        border: none;
+        color: white;
+    }
+}
+.wrapBtn{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    button{
+        align-self: center;
+        padding: 5px;
+        height: 50px;
+        margin-top: 20px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border: none;
+        background: linear-gradient(45deg, gray, var(--Tomato), gray);
+        box-shadow: 2px 2px 4px black;
+        font-size: 20px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: transform 2.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+        &:hover{
+            transform: scale(1.1);
+        }
+    }
+    button+ div{
+        width: 590px;
+        border: 4px solid black;
+        margin-top: 30px;
+        margin-bottom: 5px;
+        position: relative;
+        align-self: center;
+    }
+    .color-container{
+        display: flex;
+        margin-top: 3px;
+        margin-bottom: 20px;
+        align-self: center;
+        gap: 2px;
+        .color-box{
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 0.3px solid var(--Shocking-Pink)
+        }
+    }
+    .dropDown{
+        border: none;
+        align-self: flex-start;
+        margin-bottom: 20px;
+        height: 30px;
+        width: 180px;
+        padding: 5px;
+        font-size: 15px;
+        cursor: pointer;
+        &:focus{
+            box-shadow: inset 2px 2px 4px black;
+            outline-color: #dcdcdc;
+        }
+    }
+}
+table{
+    border-collapse: collapse;
+    color: black;
+    margin: 0 auto;
+    width: 80%;
+    thead{
+        background: linear-gradient(45deg, gray, var(--Tomato), gray);
+        color: white;
+        height: 55px;
+        font-size: 20px;
+        line-height: 50px;
+        width: 100%;
+    }
+    th.index, td.index{
+        width: 10%;
+        text-align: center;
+    }
+    th.website-name, td.website-name{
+        width: 45%;
+        text-align: center;
+    }
+    th.date, td.date{
+        width: 15%;
+        text-align: center;
+    }
+    th.icon, td.icon{
+        width: 10%;
+        text-align: center;
+    }
+}
+tbody{
+    font-family: sans-serif;
+    width: 100%;
+    .trData{
+        height: 45px;
+        line-height: 35px;
+        background-color: #fff;
+        margin: 0 auto;
+        border-bottom: 1px solid rgb(47, 79, 79);
+        transition: all 0.5s linear;
+    }
+    .trData.animate{
+        transform: scale(0.3);
+        opacity: 0;
+    }
+    td.icon{
+        font-size: 20px;
+        i{
+            cursor: pointer;
+            font-weight: 900;
+            transition: color 0.4s easy;
+            &:hover{
+                color:var(--Shocking-Pink);
+            }
+        }
+    }
+    a{
+        text-decoration: none;
+        color: black;
+    }
+}
+
+.errMessage{
+    position: absolute;
+    top: -150px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: top 0.5s ease, opacity 0.5s ease;
+} 
+.errMessage.show{
+    top:0;
+    opacity: 1;
+}
+
+.errMessage.show::before{
+    z-index: 2;
+    content: "";
+    position: absolute;
+    width: 14%; height: 5px;
+    background: skyblue;
+    bottom: 1px; left: 43%;
+    border-radius: 20px;
+    animation: progress 5s linear forwards;
+}
+
+@keyframes progress{
+    100%{
+        width: 0%;
+    }
+}
+
+.errorContainer{
+    background: linear-gradient(90deg, gray, #ff0000, gray);
+    padding-left: 10px;
+    width: 275px;
+    height: 100px;
+    margin: 0px auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-content: center;
+    opacity: 1;
+    border-radius: 15px;
+    h3{
+       align-self: center;
+    }
+    #Icon{
+        color: white;
+        align-self: center;
+        margin-right: 6px;
+        font-size: 24px
+    }
+ }
+.errorContainer i:nth-of-type(2){
+    color: white;
+    font-size: 28px;
+    align-self:first baseline;
+    margin-right: -22px;
+    cursor: pointer;
+    &:hover{
+        background: black;
+        border-radius: 5px;
+    }
+}
+
+.line::before{
+    content: "";
+    position: absolute;
+    width: 250px;
+    height:5px;
+    background: linear-gradient(45deg,  var(--Light-Salmon), skyblue);
+    border-radius: 50px;
+    animation: bounce 5s cubic-bezier(0.445, 0.05, 0.55, 0.95) infinite;
+}
+.line::after{
+        content: "";
+        position: absolute;
+        inset: 4px;
+        background: #0e1538;
+}
+
+@keyframes bounce {
+    0%, 100% {
+      transform: translateX(-5px) scale(1);
+      opacity: 2;
+    }
+    50% {
+      transform: translateX(280px) scale(1.5);
+      opacity: 1.5;
+    }
+  }
+
+@media(max-width: 930px){
+    .errMessage.show::before{
+        z-index: 2;
+        content: "";
+        position: absolute;
+        width: 30%; height: 5px;
+        background: skyblue;
+        bottom: 1px; left: 35%;
+        border-radius: 20px;
+        animation: progress 5s linear forwards;
+    }
+}

@@ -1,0 +1,87 @@
+/* To-Do List:
+Buat aplikasi to-do list sederhana yang memungkinkan pengguna menambahkan, menghapus, dan menandai tugas sebagai selesai.
+Gunakan event listeners untuk menangani klik tombol dan input dari pengguna.
+
+Calculator:
+Buat kalkulator yang dapat melakukan operasi dasar seperti penjumlahan, pengurangan, perkalian, dan pembagian.
+Gunakan elemen HTML seperti tombol dan input untuk menangani operasi kalkulator.
+
+Quiz App:
+Buat aplikasi kuis dengan beberapa pertanyaan pilihan ganda.
+Tampilkan hasil kuis setelah semua pertanyaan dijawab.
+
+Image Carousel:
+Buat carousel gambar yang memungkinkan pengguna untuk melihat berbagai gambar dengan mengklik tombol berikutnya atau sebelumnya.
+Gunakan JavaScript untuk mengganti gambar yang ditampilkan.
+
+Weather App:
+Buat aplikasi cuaca yang mengambil data cuaca dari API cuaca dan menampilkan informasi cuaca terkini berdasarkan lokasi pengguna.
+Pelajari cara bekerja dengan API dan menangani data JSON.
+
+Note-Taking App:
+Buat aplikasi pencatat yang memungkinkan pengguna menambahkan, mengedit, dan menghapus catatan.
+Simpan data catatan di local storage agar tetap tersedia meski halaman direfresh.
+
+Countdown Timer:
+Buat penghitung waktu mundur yang bisa digunakan untuk menghitung mundur waktu menuju tanggal atau waktu tertentu.
+Gunakan JavaScript untuk menghitung sisa waktu dan memperbarui tampilan secara berkala.
+
+Memory Game:
+Buat permainan kartu memori di mana pemain harus mencocokkan pasangan kartu yang identik.
+Gunakan JavaScript untuk mengacak kartu dan menangani logika permainan.
+
+Expense Tracker:
+Buat aplikasi pelacak pengeluaran yang memungkinkan pengguna menambahkan, menghapus, dan melihat pengeluaran mereka.
+Tampilkan total pengeluaran dan gunakan local storage untuk menyimpan data pengeluaran.
+
+Responsive Navigation Menu:
+Buat menu navigasi yang responsif dan dapat berubah tampilan saat diakses dari perangkat dengan ukuran layar berbeda.
+Gunakan JavaScript untuk menampilkan dan menyembunyikan menu berdasarkan ukuran layar. 
+
+
+Canvas Drawing App
+Deskripsi: Aplikasi sederhana yang memungkinkan pengguna menggambar di atas elemen canvas. Anda bisa menggunakan offsetX dan 
+offsetY untuk mendapatkan posisi mouse saat menggambar.
+Fitur Latihan:
+Menggambar garis atau bentuk berdasarkan posisi mouse.
+Menambahkan kontrol untuk mengubah warna dan ukuran kuas.
+2. Drag-and-Drop Interface
+Deskripsi: Implementasi drag-and-drop untuk 
+elemen yang dapat dipindahkan di dalam area tertentu.
+Fitur Latihan:
+Menggunakan clientWidth untuk menentukan area yang dapat dijatuhkan.
+Menggunakan offsetX dan offsetY untuk menghitung posisi elemen saat menyeretnya.
+3. Responsive Layout Adjuster
+Deskripsi:
+Aplikasi yang memungkinkan pengguna menyesuaikan ukuran elemen dengan menyeret batasnya.
+Fitur Latihan:
+Menggunakan clientWidth untuk memperbarui ukuran elemen saat pengguna menyeretnya.
+Menambahkan kontrol untuk mengubah ukuran elemen secara dinamis.
+4. Image Cropper
+Deskripsi: Alat yang memungkinkan pengguna untuk memotong gambar dengan menyeret dan mengubah ukuran area crop.
+Fitur Latihan:
+Menggunakan offsetX dan offsetY untuk menentukan posisi dan ukuran area crop.
+Menggunakan clientWidth untuk memastikan crop area tidak melebihi batas gambar.
+5. Interactive Progress Bar
+Deskripsi: Membuat progress bar interaktif yang bisa diubah dengan mengklik atau menyeret.
+Fitur Latihan:
+Menggunakan clientWidth untuk menghitung persentase kemajuan.
+Menggunakan offsetX untuk menentukan posisi klik atau drag pada progress bar.
+6. Modal Popup
+Deskripsi: Modal yang muncul di tengah layar dan dapat dipindahkan oleh pengguna.
+Fitur Latihan:
+Menggunakan clientWidth untuk menjaga modal tetap berada di dalam area tampilan.
+Menggunakan offsetX dan offsetY untuk menangani posisi modal saat di-drag.
+7. Photo Gallery with Zoom
+Deskripsi: Galeri foto di mana pengguna dapat mengklik gambar untuk memperbesar dan menyesuaikan ukuran tampilan gambar.
+Fitur Latihan:
+Menggunakan clientWidth untuk menyesuaikan ukuran gambar saat diperbesar.
+Menggunakan offsetX dan offsetY untuk menavigasi atau menampilkan zoom pada gambar.
+8. Tooltip System
+Deskripsi: Menampilkan tooltip yang muncul di posisi mouse saat pengguna hover di atas elemen tertentu.
+Fitur Latihan:
+Menggunakan offsetX dan offsetY untuk menentukan posisi tooltip relatif terhadap elemen target.
+Menggunakan clientWidth untuk memastikan tooltip tidak melebihi batas layar.
+Mengembangkan aplikasi-aplikasi ini tidak hanya membantu Anda mempraktikkan penggunaan clientWidth, offsetX, dan offsetY, tetapi juga memperkuat pemahaman Anda tentang DOM dan interaksi pengguna secara umum.
+*/
+

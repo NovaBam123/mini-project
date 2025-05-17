@@ -1,0 +1,90 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+	
+<head> 
+	<meta charset="UTF-8"> 
+	<meta http-equiv="X-UA-Compatible"
+		content="IE=edge"> 
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0"> 
+	<title>Design Stopwatch using HTML CSS and JavaScript</title> 
+	<link rel="stylesheet" href="/02-stopwatch II.css"> 
+</head> 
+
+<body> 
+	<div class="container"> 
+		<h1>STOPWATCH<br> 
+		<div id="time"> 
+			<span class="digit" id="hr">00</span> 
+			<span class="txt">Hr</span> 
+			<span class="digit" id="min"> 00</span> 
+			<span class="txt">Min</span> 
+			<span class="digit" id="sec"> 00</span> 
+			<span class="txt">Sec</span> 
+			<span class="digit" id="count"> 00</span> 
+		</div> 
+		<div id="buttons"> 
+			<button class="btn" id="start">Start</button> 
+			<button class="btn" id="stop">Stop</button> 
+			<button class="btn" id="reset">Reset</button> 
+		</div> 
+	</div> 
+
+<script>
+let startBtn = document.getElementById("start"); 
+let stopBtn = document.getElementById("stop"); 
+let resetBtn = document.getElementById('reset'); 
+let hour = 0; 
+let minute = 0; 
+let second = 0; 
+let count = 0; 
+
+startBtn.addEventListener("click", (e)=> {
+    timer= true
+    startTimer()
+})
+stopBtn.addEventListener("click", (e)=> {
+    timer= false;
+})
+resetBtn.addEventListener("click", (e)=> {
+    timer= false;
+    count= 0;
+    second= 0;
+    minute= 0;
+    hour = 0;
+    document.querySelector("#count").textContent= "00"
+    document.querySelector("#sec").textContent= "00"
+    document.querySelector("#min").textContent= "00"
+    document.querySelector("#hr").textContent= "00"
+})
+function startTimer() {
+    if(timer){
+        count++;
+        if(count== 100){
+            second++;
+            count= 0;
+        }
+        if(second== 60){
+            minute++;
+            second= 0;
+        }
+        if(minute== 60){
+            hour++;
+            second=0;
+            minute=0;
+        }
+        let countStr= count< 10? "0"+ count: count;
+        let secStr= second< 10? "0"+ second: second;
+        let minStr= minute< 10? "0"+ minute: minute;
+        let hourStr = hour< 10? "0"+ hour: hour;
+        document.querySelector("#count").textContent = countStr;
+        document.querySelector("#sec").textContent= secStr;
+        document.querySelector("#min").textContent= minStr;
+        document.querySelector("#hr").textContent= hourStr;
+        setTimeout(startTimer, 9)
+    }
+}   
+</script>
+</body> 
+	
+</html>

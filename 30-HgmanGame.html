@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HANGMAN GAME</title>
+    <link rel="stylesheet" href="30-HgmanGame.css">
+    <script type="module" src="30-HgmanGame.js" defer></script>
+    <script type="module" src="30-word-list.js" defer></script>
+</head>
+<body>
+    <div class="game-modal">
+        <div class="content">
+            <img src="/hangmanImg/lost.gif">
+            <h4>Game Over</h4>
+            <p>The correct word was: <b>rainbow</b> </p>
+            <button class="play-again">Play Again</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h3>Hint: </h3> 
+            <span class="header-hint">Shinning Text</span>
+        </div>
+        <div class="game-board">
+            <div class="hangman-box">
+                <img src="/hangmanImg/hangman-0.svg">
+                <h1>Hangman Game</h1>
+            </div>
+            <div class="game-box">
+                <ul class="word-display"></ul>
+                <h4 class="hint-text">
+                    <!-- Hint: <b>Lorem ipsum dolor sit, amet consectetur adipisicing.</b> -->
+                </h4>
+                <h4 class="guesses-text">
+                    Incorrect guesses: <b>0 / 6<b>
+                </h4>
+                <div class="keyboard"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="option-wrapper">
+        <label for="language">Language</label>
+        <select id="languageOption" class="drop-down languange">
+            <option value="english">English</option>
+            <option value="indonesia">Indonesia</option>
+        </select>
+    </div>
+</body>
+</html>

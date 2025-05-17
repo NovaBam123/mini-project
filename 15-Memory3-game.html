@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game III</title>
+    <link rel="stylesheet" href="/15-Memory3-game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+    <div class="game">
+       <div class="control">
+            <button id="btnStart">
+               <div>
+                   <span class="material-symbols-outlined"> refresh</span>
+               </div>
+            </button>
+            <div class="stats">
+                <div class="moves" id="moves">Moves: 00</div>
+                <div class="timer" id="timer">Times: 
+                    <span id="minutes" class="minutes">00</span>
+                    <span>:</span>
+                    <span id="seconds" class="seconds">00</span>
+                </div>
+            </div>
+       </div>
+       <div class="board-container">
+            <div class="board" id="board">
+            </div>
+            <div class="win" id="win">
+                <span class="material-symbols-outlined" id="close">
+                    close
+                </span>
+                <div class="wrapper" id="wrapper">
+                    <h1>Congratulation...</h1>
+                    <span>You Won..!!</span>
+                    <span id="winMoves">With: 10 moves</span>
+                    <span id="winTimes">
+                        <p>Times:</p>
+                        <span id="winMinutes"></span>
+                        <span id="winSeconds"></span>
+                    </span>
+                </div>   
+            </div>
+       </div> 
+    </div>
+
+    <script src="/15-Memory3-game.js"></script>    
+</body>
+</html>

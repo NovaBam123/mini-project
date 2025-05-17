@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site BookmarkApp</title>
+    <link rel="stylesheet" href="/20-BookmarkApp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <h1>Site Bookmarker</h1>
+    <div class="container">
+        <!-- form to enter details of site -->
+        <form class="form" action="#">
+            <div class="input-field">
+                <label for="site_name">Name</label>
+                <input name="site_name" type="text">
+            </div>
+
+            <div class="input-field">
+                <label for="url">URL</label>
+                <input name="url" type="text" placeholder="https://www.example.com">
+            </div>
+            <button class="save_button">Save</button>
+        </form>
+
+        <!-- section where bookmarks will be displayed -->
+        <h2>Saved Bookmarks</h2>
+        <div class="bookmarks"></div>
+    </div>
+<script>
+    // Select the save button
+    let button = document.querySelector(".save_button");
+    // Select the input box
+    let siteName = document.querySelector("[name='site_name']");
+    let url = document.querySelector("[name='url']");
+    // Select the <div> with class="bookmarks"
+    let bookmarksSection = document.querySelector(".bookmarks");
+    // Hold bookmarks in local storage
+    if (typeof (localStorage.bookmark) == "undefined") {
+        localStorage.bookmark = "";
+    }
+    // listen for form submit
+
+button.addEventListener("click", function(e){
+
+// Prevent the page from reloading when submitting the form
+e.preventDefault();
+
+let patterURL = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
+let arrayItems, check = false, adr, itemAdr;
+
+// Validation of form and URL
+
+if(siteName.value === ""){
+  alert("you must fill the siteName input");
+} else if(url.value === ""){
+  alert("you must fill the url input");
+} else if(!patterURL.test(url.value)){
+  alert("you must enter a valid url");
+ } else{
+   
+    arrayItems = localStorage.bookmark.split(";");
+    adr = url.value;
+    adr = adr.replace(/http:\/\/|https:\/\//i, "");
+    arrayItems.length--;
+    
+    // Check if website is already bookmarked
+    for(item of arrayItems){
+      itemAdr = item.split(',')[1].replace(/http:\/\/|https:\/\//i,"");
+      if(itemAdr == adr){
+        check = true;
+      }
+    }
+    if(check == true){
+      alert("This website is already bookmarked");
+    }
+    else{
+    // If all checks are correct,add bookmark to local storage
+        localStorage.bookmark += `${siteName.value},${url.value};`;
+        addBookmark(siteName.value, url.value);
+        siteName.value = "";
+        url.value = ""; 
+        }
+    }
+    });
+    // Function to add the bookmark
+    function addBookmark(name, url){
+    let dataLink = url;
+
+    // After obtaining a bookmark, we display it in a div and add
+    // a button to visit the link or to delete it
+    if(!url.includes("http")){
+        url = "//" + url;
+    }
+    let item = `<div class="bookmark">
+                <span>${name}</span>
+                <a class="visit" href="${url}" target="_blank" 
+                    data-link='${dataLink}'><span class= "fa-regular fa-eye"></a>
+                <a onclick="removeBookmark(this) " 
+                    class="delete" href="#"><span class= "fa-solid fa-trash-can"></a>
+                </div>`;
+    bookmarksSection.innerHTML += item;
+    }
+    // function to render the saved bookmarks
+    (function fetchBoookmark(){
+    if(typeof(localStorage.bookmark) != "undefined" && localStorage.bookmark !== ""){
+        let arrayItems = localStorage.bookmark.split(";");
+        arrayItems.length--;
+        for(item of arrayItems){
+        let itemSpli = item.split(',');
+        addBookmark(itemSpli[0], itemSpli[1]);
+        }
+    }
+    })();
+    // Function to remove the bookmark
+    function removeBookmark(thisItem){
+        let arrayItems = [],
+            index,
+            item = thisItem.parentNode,
+            itemURL = item.querySelector(".visit").dataset.link,
+            itemName = item.querySelector("span").innerHTML;
+            arrayItems = localStorage.bookmark.split(";");
+        
+        for(i in arrayItems){
+            if(arrayItems[i] == `${itemName},${itemURL}`){
+            index = i;
+            break;
+            }
+        }
+    //update the localStorage
+    index = arrayItems.indexOf(`${itemName},${itemURL}`);
+    arrayItems.splice(index,1);
+    localStorage.bookmark = arrayItems.join(";");
+    
+    //update the bookmark Section
+    bookmarksSection.removeChild(item);
+    }
+
+</script>    
+</body>
+</html>

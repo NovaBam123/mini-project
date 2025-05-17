@@ -1,0 +1,15 @@
+.card {width:49%;margin-left: 6px;}
+.card-header i {float:right;}
+.fa-solid.fa-pen-to-square, .fa-solid.fa-trash{
+    cursor: pointer;
+    margin: 0 5px
+}
+.hidden {display:none}
+.swatch {width:20px; height:20px; float:left; margin-right:10px; border-radius: 50%; cursor: pointer; }
+.swatch:hover, .active  {border: 3px solid rgb(247, 189, 189)}
+.edit-mode{
+    background-color:rgb(112, 186, 216);
+}
+
+/* <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash"></i> */

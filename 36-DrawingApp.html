@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/36-DrawingApp.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <title>DRAWING APPLICATION</title>
+</head>
+<body>
+    <div class="container">
+        <h1>DRAWING APPLICATION</h1>
+        <div class="drawing-area">
+            <canvas id="drawingBoard"></canvas>
+            <div class="side-bar active">
+                <div class="color">
+                    <label for="stroke">Color Stroke</label>
+                    <input type="color" id="color">
+                </div>
+                <div class="pencil">
+                    <label for="pencil-stroke">Pencil Stroke</label>
+                    <input id="pencilStroke" name="pencil-stroke" type="number" value="3">
+                </div>
+                <div class="zoom">
+                    <label for="zoom">Zoom In/ Zoom Out</label>
+                    <div class="btnWrap">
+                        <button class="optionBtn zoomIn"><i class="fa-solid fa-magnifying-glass-plus"></i></button>  
+                        <button class="optionBtn zoomOut"><i class="fa-solid fa-magnifying-glass-minus"></i></button>  
+                    </div>
+                </div>
+                <div class="rotate">
+                    <label for="rotate">Rotate Image</label>
+                    <div class="btnWrap">
+                        <button class="optionBtn rotateLeft"><i class="fa-solid fa-rotate-left"></i></button>  
+                        <button class="optionBtn rotateRight"><i class="fa-solid fa-rotate-right"></i></button>  
+                    </div>
+                </div>
+                <div class="btnReset"> Clear
+                    <button id="btnClear">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+                <button class="sidebarBtn" title="clear drawing">
+                    <i class="fa-solid fa-chevron-left"></i>  
+                </button>
+            </div>        
+        </div>
+    </div>
+    <script>
+        let sidebarEl= document.querySelector(".side-bar"),
+        sidebarBtnEl= document.querySelector(".sidebarBtn");
+        canvasEl= document.getElementById("drawingBoard");
+        ctx= canvasEl.getContext("2d");
+
+        let isDrawing = false,
+        lineWidth= 3, 
+        startX = null, 
+        startY = null;
+
+        const canvasOffsetX= canvasEl.offsetLeft;
+        const canvasOffsetY= canvasEl.offsetTop;
+        canvasEl.width= window.innerWidth- canvasOffsetX;
+        canvasEl.height= window.innerHeight- canvasOffsetY;
+        
+        canvasEl.addEventListener("mousemove", e=> {
+            if(!isDrawing) return;
+            let currentX= e.clientX- canvasOffsetX;
+            let currentY= e.clientY- canvasOffsetY;
+            ctx.lineWidth= lineWidth;
+            ctx.lineCap= "round";
+
+            ctx.lineTo(currentX, currentY);
+            ctx.stroke();
+        });
+        
+        canvasEl.addEventListener("mouseup", e=> { 
+            isDrawing= false
+            ctx.closePath();
+        })
+
+        canvasEl.addEventListener("mousedown", e=> {
+            isDrawing= true;
+            startX= e.clientX- canvasOffsetX;
+            startY= e.clientY- canvasOffsetY;
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+        })
+
+        sidebarEl.addEventListener("click", e=> {
+            let clearEl= e.target.closest(".fa-trash")
+            if(e.target.id === "btnClear" || clearEl) {
+                ctx.clearRect(0, 0, canvasEl.width, canvasEl.height);
+                ctx.beginPath();
+            }
+        })
+
+        sidebarEl.addEventListener("change", e=> {
+            if(e.target.id=== "pencilStroke") {
+                lineWidth= e.target.value;
+            };
+            
+            if(e.target.id === "color") {
+                ctx.strokeStyle= e.target.value;
+            }
+        })
+
+        sidebarBtnEl.addEventListener("click", e=>{
+            sidebarEl.classList.toggle("active");
+            if(sidebarEl.classList.contains("active")){
+                sidebarBtnEl.querySelector('i').classList.remove("fa-chevron-left");  
+                sidebarBtnEl.querySelector('i').classList.add("fa-chevron-right"); 
+            }else{
+                sidebarBtnEl.querySelector('i').classList.remove("fa-chevron-right");  
+                sidebarBtnEl.querySelector('i').classList.add("fa-chevron-left"); 
+            }
+        });
+        
+   </script>
+</body>
+</html>

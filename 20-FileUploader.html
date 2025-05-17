@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple File Upload</title>
+    <link rel="stylesheet" href="20-FileUploader.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <script src="20-fileUploader.js" defer></script>
+</head>
+<body>
+    <div class="file-uploader">
+        <div class="uploader-header">
+             <div class="dot-wrapper">
+
+             </div>
+            <h2 class="uploader-title">File Uploader</h2>
+            <h4 class="file-completed-status"></h4>
+        </div>
+        <ul class="file-list">
+            <!-- <li class="file-item">
+                <div class="file-extension">JPG</div>
+                <div class="file-content-wrapper">
+                    <div class="file-content">
+                        <div class="file-details">
+                            <h5 class="file-name">Image_avatar_graphic_02.jpg</h5>
+                            <div class="file-info">
+                                <small class="file-size">4 MB / 8 MB</small>
+                                <small class="file-divider">•</small>
+                                <small class="file-status">Uploading...</small>
+                            </div>
+                        </div>
+                        <button class="cancel-button">
+                            <i class="bi bi-x"></i>
+                        </button>
+                    </div>
+                    <div class="file-progress-bar">
+                        <div class="file-progress"></div>
+                    </div>
+                </div>
+            </li> -->
+        </ul>
+        <div class="file-upload-box">
+            <h2 class="box-title">
+                <span class="file-instruction">Drag files here or</span>
+                <span class="file-browse-button"> browse</span>
+                <input class="file-browse-input" type="file" multiple hidden>
+            </h2>
+        </div>
+    </div>
+</body>
+</html>

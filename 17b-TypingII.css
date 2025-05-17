@@ -1,0 +1,90 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{ margin: 0; padding: 0; box-sizing: border-box;}
+
+:root{
+    --bg:  rgb(255, 182, 193);
+}
+
+@media (min-width: 300px) and (max-width: 768px){
+    body{
+        min-height: 75vh;
+        display: inline-block;
+        padding: 5px 5px;
+    }
+    header{
+        width: 390px;
+        h1{ 
+            text-align: center;
+            font-size: 1.6em;
+            margin: 5px 0;
+        }
+    }
+    main{
+        border: 1px solid red;
+        max-width: 410px;
+        font-size: 1em;
+        .color-select{
+            display: flex;
+            align-items: center;
+            gap: 3px;
+            .color-box{
+                border: 1px solid #fff;
+                width: 15px; height: 15px;
+                cursor: pointer;
+                border-radius: 50%;
+            }
+            label{
+                margin-left: 50px;
+                margin-right: 5px;
+                font-size: 16px;
+                color: white;
+            }
+            .drop-down{
+                min-height: 30px; min-width: 140px;
+                border-radius: 10px;
+                padding: 5px;
+                background: linear-gradient(120deg, black, rgb(255, 182, 193), black);
+                color: white;
+                font-size: 16px;
+                option{
+                    background:#242124; 
+                }
+            }
+        }
+        p{  
+            position: relative;
+            letter-spacing: 0.1px;
+            line-height: 1.2;
+            span{
+                letter-spacing: 2px;
+                word-spacing: 10px;
+                position: relative;
+                transition: all 0.2s ease;
+                font-size: 1.3em;
+            }
+            .constant-speed{
+                width: 15px;
+                height: 3px;
+                position: absolute;
+                line-height: 2;
+                top: 45px;
+                left: 0;
+                background: rgba(233, 233, 184, 0.7);
+                opacity: 0;
+                transition: opacity .3s ease-out; 
+                &.moving{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+

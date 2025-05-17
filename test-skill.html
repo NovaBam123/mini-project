@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            list-style: none;
+        }
+        .wrapper{
+            margin: 50px;
+            .container{
+                /* background-color: black; */
+                border-radius: 10px;
+                box-shadow: inset 2px 2px 6px black;
+                width: 40%;
+                height: 300px;
+                border: 1px solid purple;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                padding: 10px;
+            }
+            .addNote{
+                margin-top: 60px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                .icon{
+                    width: 80px;
+                    height: 80px;
+                    border: 2px dashed blue;
+                    border-radius: 50%;
+                    font-size: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    }
+                }
+            .setting{
+                padding-top: 10px;
+                border-top: 1px solid blue;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                position: relative;
+                i{
+                    cursor: pointer;
+                    font-size: 20px;
+                }
+            }
+            .menu{
+                position: absolute;
+                border-radius: 5px;
+                width: 100px;
+                background-color:cornsilk;
+                right: -10px;
+                bottom: 10px;
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                box-shadow: inset 2px 2px 6px black;
+                padding: 2px;
+                transform: scale(0);
+                transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1);
+                li{
+                    display: flex;
+                    padding: 5px 10px;
+                    align-items: center;
+                    margin: 5px 0px;
+                    cursor: pointer;
+                    &:hover{
+                        background-color: black;
+                        color: white
+                    }
+                }
+                i{
+                    margin: 0 5px;
+                }
+            }
+        }
+        .setting:hover .menu{
+            transform: scale(1);
+        }
+       .containerII{
+            margin: 0 65px;
+            max-width: 300px;
+            display: flex;
+            justify-content: space-evenly;
+            button{
+                cursor: pointer;
+                padding: 5px;
+            }
+       }
+       .go{
+        background: skyblue;
+       }
+       .stop{
+        background: linear-gradient(90deg, black, skyblue, black)
+       }
+    
+    </style>  
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container" id="container">
+        <li class="addNote">
+            <div class="icon"> <i class="bi bi-plus-lg"></i></div>
+            <p>Add</p>
+        </li>
+           
+                <div class="setting">
+                    <p>Juni 29, 2024</p>
+                    <i onclick="showMenu(this)" class="bi bi-three-dots"></i>
+                    <ul class="menu">
+                        <li><i class="bi bi-pencil"></i>Edit</li>
+                        <li><i class="bi bi-trash3"></i>Delete</li>
+                    </ul>
+                </div>
+        </div>   
+    </div>
+    <div class="containerII">
+        
+    </div>
+    
+  
+</body>
+<script>
+    let isInterval;
+
+    let array= ['🥔', '🍒']
+    const htmlString= `  <div id="my_box">
+                        </div>
+                        <button class="btn1" id="btn1">Start</button>
+                        <button class="btn2"id= "btn2">Stop</button>`
+    const parser = new DOMParser();
+    const doc= parser.parseFromString(htmlString, "text/html")
+    const newElements= doc.body.children;
+    const container= document.querySelector(".containerII");
+    Array.from(newElements).forEach(el=> container.appendChild(el));
+
+    function changeColor(){
+        if(!isInterval){
+            isInterval= setInterval(flashText, 1500);
+        }
+    }
+
+    function flashText(){
+        const myElem = document.getElementById("container");
+            if (myElem.classList.contains("go")) {
+                myElem.classList.remove("go");
+                myElem.classList.add("stop");
+            } else {
+                myElem.classList.remove("stop");
+                myElem.classList.add("go");
+            }
+        }
+    
+    function stop(){
+        clearInterval(isInterval);
+        isInterval= null;
+    }
+
+    document.getElementById("btn1").addEventListener("click", changeColor);
+    document.getElementById("btn2").addEventListener("click", stop);
+
+</script>
+</html>
